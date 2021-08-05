@@ -76,8 +76,11 @@
         
         
             <li><a href="../program/main.html">Program</a></li>
-      
+               
+        
+        
             </ul>
+        
             </li>
 
 
@@ -98,6 +101,8 @@
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../program/main.html">Program</a></li>
+
+
 
           </ul>
         
@@ -131,12 +136,13 @@
      
      
      
+     
     
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 9.3% of total for procedures.">157 statements</a>
+    title=" 9.9% of total for procedures.">168 statements</a>
      </li> 
      
      
@@ -238,7 +244,7 @@ public subroutine read_coord(mol, unit, error)
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~2"></span>type(<a href='../type/structure_type.html'>structure_type</a>),</td>
+  <td><span class="anchor" id="variable-mol"></span>type(<a href='../type/structure_type.html'>structure_type</a>),</td>
   <td>intent(out)</td>
   <td></td>
   
@@ -253,7 +259,7 @@ public subroutine read_coord(mol, unit, error)
   
 <tr>
   
-  <td><span class="anchor" id="variable-unit~10"></span>integer,</td>
+  <td><span class="anchor" id="variable-unit~6"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -268,7 +274,7 @@ public subroutine read_coord(mol, unit, error)
   
 <tr>
   
-  <td><span class="anchor" id="variable-error~10"></span>type(<a href='../type/error_type.html'>error_type</a>),</td>
+  <td><span class="anchor" id="variable-error~6"></span>type(<a href='../type/error_type.html'>error_type</a>),</td>
   <td>intent(out),</td>
   <td></td>
   
@@ -359,11 +365,12 @@ public subroutine read_coord(mol, unit, error)
    <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">p_initial_size</span> <span class="o">=</span> <span class="mi">100</span>
    <span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">p_nlv</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="n">p_ncp</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
 
-   <span class="kt">logical</span> <span class="kd">::</span> <span class="n">has_coord</span><span class="p">,</span> <span class="n">has_periodic</span><span class="p">,</span> <span class="n">has_lattice</span><span class="p">,</span> <span class="n">has_cell</span>
+   <span class="kt">logical</span> <span class="kd">::</span> <span class="n">has_coord</span><span class="p">,</span> <span class="n">has_periodic</span><span class="p">,</span> <span class="n">has_lattice</span><span class="p">,</span> <span class="n">has_cell</span><span class="p">,</span> <span class="n">has_eht</span>
    <span class="kt">logical</span> <span class="kd">::</span> <span class="n">cartesian</span><span class="p">,</span> <span class="n">coord_in_bohr</span><span class="p">,</span> <span class="n">lattice_in_bohr</span><span class="p">,</span> <span class="n">pbc</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-   <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">stat</span><span class="p">,</span> <span class="n">iatom</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">natoms</span><span class="p">,</span> <span class="n">periodic</span><span class="p">,</span> <span class="n">cell_vectors</span>
+   <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">stat</span><span class="p">,</span> <span class="n">iatom</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">natoms</span><span class="p">,</span> <span class="n">periodic</span><span class="p">,</span> <span class="n">cell_vectors</span><span class="p">,</span> <span class="n">icharge</span>
+   <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">unpaired</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">latvec</span><span class="p">(</span><span class="mi">9</span><span class="p">),</span> <span class="n">conv</span><span class="p">,</span> <span class="n">cellpar</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="n">lattice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">coord</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">xyz</span><span class="p">(:,</span> <span class="p">:)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">coord</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">xyz</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">charge</span>
    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">line</span><span class="p">,</span> <span class="n">cell_string</span><span class="p">,</span> <span class="n">lattice_string</span>
    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">symbol_length</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">sym</span><span class="p">(:)</span>
    <span class="k">type</span><span class="p">(</span><span class="n">structure_info</span><span class="p">)</span> <span class="kd">::</span> <span class="n">info</span>
@@ -374,6 +381,7 @@ public subroutine read_coord(mol, unit, error)
    <span class="n">iatom</span> <span class="o">=</span> <span class="mi">0</span>
    <span class="n">periodic</span> <span class="o">=</span> <span class="mi">0</span>
    <span class="n">cell_vectors</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="n">has_eht</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
    <span class="n">has_coord</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
    <span class="n">has_periodic</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
    <span class="n">has_lattice</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
@@ -385,11 +393,24 @@ public subroutine read_coord(mol, unit, error)
    <span class="n">pbc</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
 
    <span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
+   <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
    <span class="k">do while</span><span class="p">(</span><span class="nb">stat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
       <span class="k">if</span> <span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">flag</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">         if</span> <span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">            exit</span>
+
+<span class="k">         else if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">has_eht</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;eht&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            </span><span class="n">has_eht</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;charge=&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">               read</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">7</span><span class="p">:),</span> <span class="o">*</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span> <span class="n">icharge</span>
+               <span class="n">charge</span> <span class="o">=</span> <span class="kt">real</span><span class="p">(</span><span class="n">icharge</span><span class="p">,</span> <span class="n">wp</span><span class="p">)</span>
+            <span class="k">end if</span>
+<span class="k">            </span><span class="n">j</span> <span class="o">=</span> <span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;unpaired=&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">               allocate</span><span class="p">(</span><span class="n">unpaired</span><span class="p">)</span>
+               <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">9</span><span class="p">:),</span> <span class="o">*</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span> <span class="n">unpaired</span>
+            <span class="k">end if</span>
 
 <span class="k">         else if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">has_coord</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;coord&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">            </span><span class="n">has_coord</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
@@ -397,17 +418,15 @@ public subroutine read_coord(mol, unit, error)
             <span class="k">call </span><span class="n">select_unit</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">coord_in_bohr</span><span class="p">,</span> <span class="n">cartesian</span><span class="p">)</span>
             <span class="n">coord_group</span><span class="p">:</span> <span class="k">do while</span><span class="p">(</span><span class="nb">stat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
                <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-               <span class="k">if</span> <span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">flag</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">                  backspace</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-                  <span class="k">exit </span><span class="n">coord_group</span>
-               <span class="k">end if</span>
-<span class="k">               if</span> <span class="p">(</span><span class="n">iatom</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="k">call </span><span class="n">resize</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
+               <span class="k">if</span> <span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">flag</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">exit </span><span class="n">coord_group</span>
+               <span class="k">if</span> <span class="p">(</span><span class="n">iatom</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="k">call </span><span class="n">resize</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
                <span class="k">if</span> <span class="p">(</span><span class="n">iatom</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="p">(</span><span class="n">sym</span><span class="p">))</span> <span class="k">call </span><span class="n">resize</span><span class="p">(</span><span class="n">sym</span><span class="p">)</span>
                <span class="n">iatom</span> <span class="o">=</span> <span class="n">iatom</span> <span class="o">+</span> <span class="mi">1</span>
                <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span> <span class="n">coord</span><span class="p">(:,</span> <span class="n">iatom</span><span class="p">),</span> <span class="n">sym</span><span class="p">(</span><span class="n">iatom</span><span class="p">)</span>
             <span class="k">end do </span><span class="n">coord_group</span>
+            <span class="k">cycle</span>
 
-         <span class="k">else if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">has_periodic</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;periodic&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         else if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">has_periodic</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;periodic&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">            </span><span class="n">has_periodic</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
             <span class="c">! $periodic 0/1/2/3</span>
             <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="mi">10</span><span class="p">:),</span> <span class="o">*</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span> <span class="n">periodic</span>
@@ -420,15 +439,13 @@ public subroutine read_coord(mol, unit, error)
             <span class="n">lattice_string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
             <span class="n">lattice_group</span><span class="p">:</span> <span class="k">do while</span><span class="p">(</span><span class="nb">stat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
                <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-               <span class="k">if</span> <span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">flag</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">                  backspace</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-                  <span class="k">exit </span><span class="n">lattice_group</span>
-               <span class="k">end if</span>
-<span class="k">               </span><span class="n">cell_vectors</span> <span class="o">=</span> <span class="n">cell_vectors</span> <span class="o">+</span> <span class="mi">1</span>
+               <span class="k">if</span> <span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">flag</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">exit </span><span class="n">lattice_group</span>
+               <span class="n">cell_vectors</span> <span class="o">=</span> <span class="n">cell_vectors</span> <span class="o">+</span> <span class="mi">1</span>
                <span class="n">lattice_string</span> <span class="o">=</span> <span class="n">lattice_string</span> <span class="o">//</span> <span class="s1">&#39; &#39;</span> <span class="o">//</span> <span class="n">line</span>
             <span class="k">end do </span><span class="n">lattice_group</span>
+            <span class="k">cycle</span>
 
-         <span class="k">else if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">has_cell</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;cell&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         else if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">has_cell</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;cell&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">            </span><span class="n">has_cell</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
             <span class="c">! $cell bohr / $cell angs</span>
             <span class="k">call </span><span class="n">select_unit</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">lattice_in_bohr</span><span class="p">)</span>
@@ -437,7 +454,8 @@ public subroutine read_coord(mol, unit, error)
 
          <span class="k">end if</span>
 <span class="k">      end if</span>
-<span class="k">   end do</span>
+<span class="k">      call </span><span class="n">getline</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
+   <span class="k">end do</span>
 
 <span class="k">   if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">has_coord</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">iatom</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;coordinates not present, cannot work without coordinates&quot;</span><span class="p">)</span>
@@ -527,7 +545,8 @@ public subroutine read_coord(mol, unit, error)
    <span class="c">! save data on input format</span>
    <span class="n">info</span> <span class="o">=</span> <span class="n">structure_info</span><span class="p">(</span><span class="n">cartesian</span><span class="o">=</span><span class="n">cartesian</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">has_lattice</span><span class="p">,</span> <span class="p">&amp;</span>
       <span class="p">&amp;</span> <span class="n">angs_lattice</span><span class="o">=</span><span class="p">.</span><span class="nb">not</span><span class="p">.</span><span class="n">lattice_in_bohr</span><span class="p">,</span> <span class="n">angs_coord</span><span class="o">=</span><span class="p">.</span><span class="nb">not</span><span class="p">.</span><span class="n">coord_in_bohr</span><span class="p">)</span>
-   <span class="k">call </span><span class="n">new</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">sym</span><span class="p">(:</span><span class="n">natoms</span><span class="p">),</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="n">pbc</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="n">info</span><span class="p">)</span>
+   <span class="k">call </span><span class="n">new</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">sym</span><span class="p">(:</span><span class="n">natoms</span><span class="p">),</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">charge</span><span class="o">=</span><span class="n">charge</span><span class="p">,</span> <span class="n">uhf</span><span class="o">=</span><span class="n">unpaired</span><span class="p">,</span> <span class="p">&amp;</span>
+      <span class="p">&amp;</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="n">pbc</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="n">info</span><span class="p">)</span>
 
 <span class="k">contains</span>
 
@@ -555,16 +574,17 @@ public subroutine read_coord(mol, unit, error)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2021 
-                                          </p></div>
-        <div class="col-xs-6 col-md-4 col-md-push-4">
+        <div class="col-xs-6 col-md-6"><p>MCTC-library was developed by Grimme group, Bonn<br>&copy; 2021 
+                                          </p>
+        </div>
+        <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
-            <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-05-27 08:42  
+            <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+             on 2021-08-05 13:03  
+            
           </p>
         </div>
-        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> MCTC-library was developed by Grimme group, Bonn</p></div>
       </div>
       <br>
       </div> <!-- /container -->    
