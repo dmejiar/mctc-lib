@@ -182,32 +182,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
-  <div id="vars-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-angs_coord">angs_coord</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-angs_lattice">angs_lattice</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-cartesian">cartesian</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-lattice~2">lattice</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-missing_hydrogen">missing_hydrogen</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-scale">scale</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-selective">selective</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-two_dimensional">two_dimensional</a>
-      
-    </div>
-  </div>
-</div>
-
-
 
 
 
@@ -255,32 +229,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
-  <div id="vars-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-angs_coord">angs_coord</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-angs_lattice">angs_lattice</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-cartesian">cartesian</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-lattice~2">lattice</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-missing_hydrogen">missing_hydrogen</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-scale">scale</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-selective">selective</a>
-      
-      <a class="list-group-item" href="../type/structure_info.html#variable-two_dimensional">two_dimensional</a>
-      
-    </div>
-  </div>
-</div>
-
-
 
 
 
@@ -311,136 +259,6 @@
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
-    
-    <section>
-    <h2>Components</h2>
-    
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-angs_coord"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>angs_coord</strong></td><td> =</td><td>.false.</td><td><p>Unit of the atomic coordinates should be in Angstrom if possible</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-angs_lattice"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>angs_lattice</strong></td><td> =</td><td>.false.</td><td><p>Unit of the lattice vectors should be in Angstrom if possible</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-cartesian"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>cartesian</strong></td><td> =</td><td>.true.</td><td><p>Periodic coordinates should use preferrably cartesian coordinates</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-lattice~2"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>lattice</strong></td><td> =</td><td>.true.</td><td><p>Lattice information should use preferrably lattice vectors</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-missing_hydrogen"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>missing_hydrogen</strong></td><td> =</td><td>.false.</td><td><p>SDF hydrogen query present or PDB without hydrogen atoms found</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-scale"></span>real(kind=wp),</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>scale</strong></td><td> =</td><td>1.0_wp</td><td><p>Vasp coordinate scaling information</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-selective"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>selective</strong></td><td> =</td><td>.false.</td><td><p>Vasp selective dynamics keyword is present</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-two_dimensional"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>two_dimensional</strong></td><td> =</td><td>.false.</td><td><p>SDF 2D structure present</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-    </section>
-    <br>
     
     
     
@@ -500,7 +318,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-08-05 13:03  
+             on 2021-09-25 19:02  
             
           </p>
         </div>

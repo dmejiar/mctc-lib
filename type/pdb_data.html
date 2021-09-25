@@ -182,34 +182,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
-  <div id="vars-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-chains">chains</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-charge~3">charge</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-code">code</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-het">het</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-loc">loc</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-name~3">name</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-residue">residue</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-residue_number">residue_number</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-segid">segid</a>
-      
-    </div>
-  </div>
-</div>
-
-
 
 
 
@@ -245,12 +217,12 @@
       <h2>type, public :: pdb_data</h2>
     <p>Atomic pdb data type.</p>
 <p>keeps information from PDB input that is currently not used by the
- caller program (like residues or chains) but is needed to write
- the PDB output eventually</p>
-<div class="codehilite"><pre><span></span><code> ATOM   2461  HA3 GLY A 153     -10.977  -7.661   2.011  1.00  0.00           H
- TER    2462      GLY A 153
- a6----i5---xa4--aa3-xai4--axxxf8.3----f8.3----f8.3----f6.2--f6.2--xxxxxxa4--a2a2
- HETATM 2463  CHA HEM A 154       9.596 -13.100  10.368  1.00  0.00           C
+caller program (like residues or chains) but is needed to write
+the PDB output eventually</p>
+<div class="codehilite"><pre><span></span><code>ATOM   2461  HA3 GLY A 153     -10.977  -7.661   2.011  1.00  0.00           H
+TER    2462      GLY A 153
+a6----i5---xa4--aa3-xai4--axxxf8.3----f8.3----f8.3----f6.2--f6.2--xxxxxxa4--a2a2
+HETATM 2463  CHA HEM A 154       9.596 -13.100  10.368  1.00  0.00           C
 </code></pre></div>
     
     
@@ -262,34 +234,6 @@
 <h3>Contents</h3>
  
 
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
-  <div id="vars-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-chains">chains</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-charge~3">charge</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-code">code</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-het">het</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-loc">loc</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-name~3">name</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-residue">residue</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-residue_number">residue_number</a>
-      
-      <a class="list-group-item" href="../type/pdb_data.html#variable-segid">segid</a>
-      
-    </div>
-  </div>
-</div>
 
 
 
@@ -322,150 +266,6 @@
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
-    
-    <section>
-    <h2>Components</h2>
-    
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-chains"></span>character(len=1),</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>chains</strong></td><td> =</td><td>' '</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-charge~3"></span>integer,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>charge</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-code"></span>character(len=1),</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>code</strong></td><td> =</td><td>' '</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-het"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>het</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-loc"></span>character(len=1),</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>loc</strong></td><td> =</td><td>' '</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-name~3"></span>character(len=4),</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>name</strong></td><td> =</td><td>' '</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-residue"></span>character(len=3),</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>residue</strong></td><td> =</td><td>' '</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-residue_number"></span>integer,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>residue_number</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-segid"></span>character(len=4),</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>segid</strong></td><td> =</td><td>' '</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-    </section>
-    <br>
     
     
     
@@ -509,7 +309,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-08-05 13:03  
+             on 2021-09-25 19:02  
             
           </p>
         </div>
