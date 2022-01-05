@@ -142,7 +142,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="12.4% of total for modules and submodules.">332 statements</a>
+    title="11.5% of total for modules and submodules.">332 statements</a>
      </li> 
      
      
@@ -286,72 +286,72 @@
  <a href="../interface/test_interface.html">test_interface</a> compatible signature. The error status is communicated
  by the allocation status of an <a href="../type/error_type.html">error_type</a>.</p>
 <p>The necessary boilerplate code to setup the test entry point is just</p>
-<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">tester</span>
-   <span class="k">use</span><span class="p">,</span> <span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">error_unit</span>
-   <span class="k">use </span><span class="n">mctc_env_testing</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">run_testsuite</span><span class="p">,</span> <span class="n">new_testsuite</span><span class="p">,</span> <span class="n">testsuite_type</span>
-   <span class="k">use </span><span class="n">test_suite1</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">collect_suite1</span>
-   <span class="k">use </span><span class="n">test_suite2</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">collect_suite2</span>
-   <span class="k">implicit none</span>
-<span class="k">   </span><span class="kt">integer</span> <span class="kd">::</span> <span class="nb">stat</span><span class="p">,</span> <span class="n">ii</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">testsuite_type</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">testsuites</span><span class="p">(:)</span>
-   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;(&quot;#&quot;, *(1x, a))&#39;</span>
+<div class="codehilite"><pre><span></span><code><span class="k">program </span><span class="n">tester</span><span class="w"></span>
+<span class="w">   </span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">error_unit</span><span class="w"></span>
+<span class="w">   </span><span class="k">use </span><span class="n">mctc_env_testing</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">run_testsuite</span><span class="p">,</span><span class="w"> </span><span class="n">new_testsuite</span><span class="p">,</span><span class="w"> </span><span class="n">testsuite_type</span><span class="w"></span>
+<span class="w">   </span><span class="k">use </span><span class="n">test_suite1</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">collect_suite1</span><span class="w"></span>
+<span class="w">   </span><span class="k">use </span><span class="n">test_suite2</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">collect_suite2</span><span class="w"></span>
+<span class="w">   </span><span class="k">implicit none</span>
+<span class="k">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">ii</span><span class="w"></span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">testsuite_type</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">testsuites</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">fmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;(&quot;#&quot;, *(1x, a))&#39;</span><span class="w"></span>
 
-   <span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">   </span><span class="nb">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 
-   <span class="n">testsuites</span> <span class="o">=</span> <span class="p">[</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="n">new_testsuite</span><span class="p">(</span><span class="s2">&quot;suite1&quot;</span><span class="p">,</span> <span class="n">collect_suite1</span><span class="p">),</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="n">new_testsuite</span><span class="p">(</span><span class="s2">&quot;suite2&quot;</span><span class="p">,</span> <span class="n">collect_suite2</span><span class="p">)</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="p">]</span>
+<span class="w">   </span><span class="n">testsuites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">new_testsuite</span><span class="p">(</span><span class="s2">&quot;suite1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">collect_suite1</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">new_testsuite</span><span class="p">(</span><span class="s2">&quot;suite2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">collect_suite2</span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
 
-   <span class="k">do </span><span class="n">ii</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">testsuites</span><span class="p">)</span>
-      <span class="k">write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="n">fmt</span><span class="p">)</span> <span class="s2">&quot;Testing:&quot;</span><span class="p">,</span> <span class="n">testsuites</span><span class="p">(</span><span class="n">ii</span><span class="p">)%</span><span class="n">name</span>
-      <span class="k">call </span><span class="n">run_testsuite</span><span class="p">(</span><span class="n">testsuites</span><span class="p">(</span><span class="n">ii</span><span class="p">)%</span><span class="n">collect</span><span class="p">,</span> <span class="n">error_unit</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-   <span class="k">end do</span>
+<span class="w">   </span><span class="k">do </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">testsuites</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Testing:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">testsuites</span><span class="p">(</span><span class="n">ii</span><span class="p">)%</span><span class="n">name</span><span class="w"></span>
+<span class="w">      </span><span class="k">call </span><span class="n">run_testsuite</span><span class="p">(</span><span class="n">testsuites</span><span class="p">(</span><span class="n">ii</span><span class="p">)%</span><span class="n">collect</span><span class="p">,</span><span class="w"> </span><span class="n">error_unit</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">end do</span>
 
-<span class="k">   if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(i0, 1x, a)&#39;</span><span class="p">)</span> <span class="nb">stat</span><span class="p">,</span> <span class="s2">&quot;test(s) failed!&quot;</span>
-      <span class="k">error stop</span>
+<span class="k">   if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(i0, 1x, a)&#39;</span><span class="p">)</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;test(s) failed!&quot;</span><span class="w"></span>
+<span class="w">      </span><span class="k">error stop</span>
 <span class="k">   end if</span>
 
-<span class="k">end program </span><span class="n">tester</span>
+<span class="k">end program </span><span class="n">tester</span><span class="w"></span>
 </code></pre></div>
 
 <p>Every test is defined in a separate module using a <code>collect</code> function, which
  is exported and added to the <code>testsuites</code> array in the test runner.
  All test have a simple interface with just an allocatable <a href="../type/error_type.html">error_type</a> as
  output to provide the test results.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">module </span><span class="n">test_suite1</span>
-   <span class="k">use </span><span class="n">mctc_env_testing</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">new_unittest</span><span class="p">,</span> <span class="n">unittest_type</span><span class="p">,</span> <span class="n">error_type</span><span class="p">,</span> <span class="n">check</span>
-   <span class="k">implicit none</span>
+<div class="codehilite"><pre><span></span><code><span class="k">module </span><span class="n">test_suite1</span><span class="w"></span>
+<span class="w">   </span><span class="k">use </span><span class="n">mctc_env_testing</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">new_unittest</span><span class="p">,</span><span class="w"> </span><span class="n">unittest_type</span><span class="p">,</span><span class="w"> </span><span class="n">error_type</span><span class="p">,</span><span class="w"> </span><span class="n">check</span><span class="w"></span>
+<span class="w">   </span><span class="k">implicit none</span>
 <span class="k">   private</span>
 
-<span class="k">   public</span> <span class="kd">::</span> <span class="n">collect_suite1</span>
+<span class="k">   public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">collect_suite1</span><span class="w"></span>
 
-<span class="k">contains</span>
+<span class="k">contains</span><span class="w"></span>
 
 <span class="c">!&gt; Collect all exported unit tests</span>
-<span class="k">subroutine </span><span class="n">collect_suite1</span><span class="p">(</span><span class="n">testsuite</span><span class="p">)</span>
-   <span class="c">!&gt; Collection of tests</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">unittest_type</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">testsuite</span><span class="p">(:)</span>
+<span class="k">subroutine </span><span class="n">collect_suite1</span><span class="p">(</span><span class="n">testsuite</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="c">!&gt; Collection of tests</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">unittest_type</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">testsuite</span><span class="p">(:)</span><span class="w"></span>
 
-   <span class="n">testsuite</span> <span class="o">=</span> <span class="p">[</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="n">new_unittest</span><span class="p">(</span><span class="s2">&quot;valid&quot;</span><span class="p">,</span> <span class="n">test_valid</span><span class="p">),</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="n">new_unittest</span><span class="p">(</span><span class="s2">&quot;invalid&quot;</span><span class="p">,</span> <span class="n">test_invalid</span><span class="p">,</span> <span class="n">should_fail</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span> <span class="p">&amp;</span>
-      <span class="p">&amp;</span> <span class="p">]</span>
+<span class="w">   </span><span class="n">testsuite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">new_unittest</span><span class="p">(</span><span class="s2">&quot;valid&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">test_valid</span><span class="p">),</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">new_unittest</span><span class="p">(</span><span class="s2">&quot;invalid&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">test_invalid</span><span class="p">,</span><span class="w"> </span><span class="n">should_fail</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
 
-<span class="k">end subroutine </span><span class="n">collect_suite1</span>
+<span class="k">end subroutine </span><span class="n">collect_suite1</span><span class="w"></span>
 
-<span class="k">subroutine </span><span class="n">test_valid</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">error</span>
-   <span class="c">! ...</span>
-<span class="k">end subroutine </span><span class="n">test_valid</span>
+<span class="k">subroutine </span><span class="n">test_valid</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">error</span><span class="w"></span>
+<span class="w">   </span><span class="c">! ...</span>
+<span class="k">end subroutine </span><span class="n">test_valid</span><span class="w"></span>
 
-<span class="k">subroutine </span><span class="n">test_invalid</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">error</span>
-   <span class="c">! ...</span>
-<span class="k">end subroutine </span><span class="n">test_invalid</span>
+<span class="k">subroutine </span><span class="n">test_invalid</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">error</span><span class="w"></span>
+<span class="w">   </span><span class="c">! ...</span>
+<span class="k">end subroutine </span><span class="n">test_invalid</span><span class="w"></span>
 
-<span class="k">end module </span><span class="n">test_suite1</span>
+<span class="k">end module </span><span class="n">test_suite1</span><span class="w"></span>
 </code></pre></div>
 
 <p>For an example setup checkout the <code>test/</code> directory in this project.</p>
@@ -2450,14 +2450,14 @@ public subroutine <a href='../proc/test_failed.html'>test_failed</a>(error, mess
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>MCTC-library was developed by Grimme group, Bonn<br>&copy; 2021 
+        <div class="col-xs-6 col-md-6"><p>MCTC-library was developed by Grimme group, Bonn<br>&copy; 2022 
                                           </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-30 21:37  
+             on 2022-01-05 22:00  
             
           </p>
         </div>

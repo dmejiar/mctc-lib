@@ -269,57 +269,57 @@
     
     <section>
     <h3><span class="anchor" id="src"></span>Source Code</h3>
-    <div class="highlight"><pre><span></span>   <span class="k">type</span> <span class="kd">::</span> <span class="n">structure_type</span>
+    <div class="highlight"><pre><span></span><span class="w">   </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">structure_type</span><span class="w"></span>
 
-      <span class="c">!&gt; Number of atoms</span>
-      <span class="kt">integer</span> <span class="kd">::</span> <span class="n">nat</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">      </span><span class="c">!&gt; Number of atoms</span>
+<span class="w">      </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 
-      <span class="c">!&gt; Number of unique species</span>
-      <span class="kt">integer</span> <span class="kd">::</span> <span class="n">nid</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">      </span><span class="c">!&gt; Number of unique species</span>
+<span class="w">      </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 
-      <span class="c">!&gt; Number of bonds</span>
-      <span class="kt">integer</span> <span class="kd">::</span> <span class="n">nbd</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">      </span><span class="c">!&gt; Number of bonds</span>
+<span class="w">      </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nbd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 
-      <span class="c">!&gt; Species identifier</span>
-      <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">id</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; Species identifier</span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">id</span><span class="p">(:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Atomic number for each species</span>
-      <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">num</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; Atomic number for each species</span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">num</span><span class="p">(:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Element symbol for each species</span>
-      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">symbol_length</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">sym</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; Element symbol for each species</span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">symbol_length</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sym</span><span class="p">(:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Cartesian coordinates, in Bohr</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">xyz</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">      </span><span class="c">!&gt; Cartesian coordinates, in Bohr</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">xyz</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Number of unpaired electrons</span>
-      <span class="kt">integer</span> <span class="kd">::</span> <span class="n">uhf</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="w">      </span><span class="c">!&gt; Number of unpaired electrons</span>
+<span class="w">      </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">uhf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 
-      <span class="c">!&gt; Total charge</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">charge</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<span class="w">      </span><span class="c">!&gt; Total charge</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">charge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="w"></span>
 
-      <span class="c">!&gt; Lattice parameters</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">lattice</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">      </span><span class="c">!&gt; Lattice parameters</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lattice</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Periodic directions</span>
-      <span class="kt">logical</span><span class="p">,</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">periodic</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; Periodic directions</span>
+<span class="w">      </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">periodic</span><span class="p">(:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Bond indices</span>
-      <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">bond</span><span class="p">(:,</span> <span class="p">:)</span>
+<span class="w">      </span><span class="c">!&gt; Bond indices</span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bond</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 
-      <span class="c">!&gt; Comment, name or identifier for this structure</span>
-      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">comment</span>
+<span class="w">      </span><span class="c">!&gt; Comment, name or identifier for this structure</span>
+<span class="w">      </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">comment</span><span class="w"></span>
 
-      <span class="c">!&gt; Vendor specific structure annotations</span>
-      <span class="k">type</span><span class="p">(</span><span class="n">structure_info</span><span class="p">)</span> <span class="kd">::</span> <span class="n">info</span> <span class="o">=</span> <span class="n">structure_info</span><span class="p">()</span>
+<span class="w">      </span><span class="c">!&gt; Vendor specific structure annotations</span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="n">structure_info</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">structure_info</span><span class="p">()</span><span class="w"></span>
 
-      <span class="c">!&gt; SDF atomic data annotations</span>
-      <span class="k">type</span><span class="p">(</span><span class="n">sdf_data</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">sdf</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; SDF atomic data annotations</span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="n">sdf_data</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sdf</span><span class="p">(:)</span><span class="w"></span>
 
-      <span class="c">!&gt; PDB atomic data annotations</span>
-      <span class="k">type</span><span class="p">(</span><span class="n">pdb_data</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">pdb</span><span class="p">(:)</span>
+<span class="w">      </span><span class="c">!&gt; PDB atomic data annotations</span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="n">pdb_data</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pdb</span><span class="p">(:)</span><span class="w"></span>
 
-   <span class="k">end type </span><span class="n">structure_type</span>
+<span class="w">   </span><span class="k">end type </span><span class="n">structure_type</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -334,14 +334,14 @@
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>MCTC-library was developed by Grimme group, Bonn<br>&copy; 2021 
+        <div class="col-xs-6 col-md-6"><p>MCTC-library was developed by Grimme group, Bonn<br>&copy; 2022 
                                           </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-30 21:37  
+             on 2022-01-05 22:00  
             
           </p>
         </div>

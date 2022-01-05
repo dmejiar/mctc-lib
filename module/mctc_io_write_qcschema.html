@@ -10,7 +10,7 @@
     <meta name="author" content="Grimme group, Bonn" >
     <link rel="icon" href="../favicon.png">
 
-    <title>fatal_error &ndash; MCTC-library</title>
+    <title>mctc_io_write_qcschema &ndash; MCTC-library</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -123,8 +123,8 @@
     
   
   <div class="row">
-    <h1>fatal_error
-      <small>Subroutine</small>
+    <h1>mctc_io_write_qcschema 
+    <small>Module</small>
     
     </h1>
     
@@ -142,24 +142,22 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.9% of total for procedures.">16 statements</a>
+    title=" 6.7% of total for modules and submodules.">193 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/error.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/qcschema.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/error.f90.html'>error.f90</a></li>
-    
-     <li><a href='../module/mctc_env_error.html'>mctc_env_error</a></li>
+     <li><a href='../sourcefile/qcschema.f90.html'>qcschema.f90</a></li>
     
   
-     <li class="active">fatal_error</li>
+     <li class="active">mctc_io_write_qcschema</li>
   </ol>
 </div>
 </div>
@@ -193,19 +191,23 @@
 
 
 
-
-
-
-
-
-
-
 <div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-0">Subroutines</a></h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/fatal_error.html#src">fatal_error</a>
+    <div id="subs-0" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/mctc_io_write_qcschema.html#proc-write_qcschema">write_qcschema</a>
+      
+    </div>
   </div>
 </div>
+
+
+
+
+
+
+
 
 
 
@@ -214,85 +216,37 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-public subroutine fatal_error(error, message, stat)
     
-    
-   
-</h2>
+      <br>
     
   
-
-
-    
-    <p>A fatal error is encountered</p>
-    
-
-    <h3>Arguments</h3>
-    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
       
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-error~11"></span>type(<a href='../type/error_type.html'>error_type</a>),</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>allocatable</td><td>::</td>
-  <td><strong>error</strong></td><td><p>Instance of the error</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-message~2"></span>character(len=*),</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>message</strong></td><td><p>A detailed message describing the error and (optionally) offering advice</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-stat~2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
-  
-  <td></td><td>::</td>
-  <td><strong>stat</strong></td><td><p>Overwrite of the error code</p></td>
-  
-</tr>
-
-</tbody>
-</table>
+      <li class="list-group-item">
+  <ul class="list-inline">
+    
+    <li><a href='../module/mctc_io_structure.html'>mctc_io_structure</a></li>
+    
+    <li><a href='../module/mctc_version.html'>mctc_version</a></li>
+    
+    <li><a href='../module/mctc_env_accuracy.html'>mctc_env_accuracy</a></li>
+    
+  </ul>
+      </li>
+      
+      
+      
+      </ul>
+    </div>
+    
 
     
     
-    
-    
-     
+
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
@@ -313,19 +267,23 @@ public subroutine fatal_error(error, message, stat)
 
 
 
-
-
-
-
-
-
-
 <div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#subs-1">Subroutines</a></h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/fatal_error.html#src">fatal_error</a>
+    <div id="subs-1" class="panel-collapse collapse">
+      
+      <a class="list-group-item" href="../module/mctc_io_write_qcschema.html#proc-write_qcschema">write_qcschema</a>
+      
+    </div>
   </div>
 </div>
+
+
+
+
+
+
+
 
 
 
@@ -346,48 +304,85 @@ public subroutine fatal_error(error, message, stat)
     
     
 
-
-    
-    
     
     <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+    <h2>Subroutines</h2>
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-write_qcschema"></span><h3>
+public subroutine <a href='../proc/write_qcschema.html'>write_qcschema</a>(mol, unit)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
 
-<span class="w">   </span><span class="c">!&gt; Instance of the error</span>
-<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">error</span><span class="w"></span>
 
-<span class="w">   </span><span class="c">!&gt; A detailed message describing the error and (optionally) offering advice</span>
-<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">message</span><span class="w"></span>
 
-<span class="w">   </span><span class="c">!&gt; Overwrite of the error code</span>
-<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span>
+<tbody>
 
-<span class="nb">   </span><span class="k">allocate</span><span class="p">(</span><span class="n">error</span><span class="p">)</span><span class="w"></span>
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/structure_type.html'>structure_type</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mol</strong></td><td></td>
+  
+</tr>
 
-<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="nb">stat</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">      </span><span class="n">error</span><span class="p">%</span><span class="nb">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">stat</span>
-<span class="nb">   </span><span class="k">else</span>
-<span class="k">      </span><span class="n">error</span><span class="p">%</span><span class="nb">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mctc_stat</span><span class="p">%</span><span class="n">fatal</span><span class="w"></span>
-<span class="w">   </span><span class="k">end if</span>
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>unit</strong></td><td></td>
+  
+</tr>
 
-<span class="k">   if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">message</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">      </span><span class="n">error</span><span class="p">%</span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">message</span><span class="w"></span>
-<span class="w">   </span><span class="k">else</span>
-<span class="k">      </span><span class="n">error</span><span class="p">%</span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Fatal error&quot;</span><span class="w"></span>
-<span class="w">   </span><span class="k">end if</span>
+</tbody>
+</table>
 
-<span class="k">end subroutine </span><span class="n">fatal_error</span><span class="w"></span>
-</pre></div>
+      
+    
+    
 
-    </section>
+  </div>
+  </div>
+
+    
+    </section>    
     <br>
+    
     
     
     </div>
   </div>
 
-
+  
     <hr>    
     </div> <!-- /container -->
     <footer>

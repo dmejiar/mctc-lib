@@ -142,7 +142,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 1.4% of total for procedures.">23 statements</a>
+    title=" 1.3% of total for procedures.">23 statements</a>
      </li> 
      
      
@@ -261,7 +261,7 @@ public subroutine get_structure_reader(reader, ftype)
   
 <tr>
   
-  <td><span class="anchor" id="variable-ftype~2"></span>integer,</td>
+  <td><span class="anchor" id="variable-ftype"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -337,44 +337,44 @@ public subroutine get_structure_reader(reader, ftype)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_structure_reader</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span> <span class="n">ftype</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_structure_reader</span><span class="p">(</span><span class="n">reader</span><span class="p">,</span><span class="w"> </span><span class="n">ftype</span><span class="p">)</span><span class="w"></span>
 
-   <span class="c">!&gt; Reader for the specified file type</span>
-   <span class="k">procedure</span><span class="p">(</span><span class="n">structure_reader</span><span class="p">),</span> <span class="k">pointer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">reader</span>
+<span class="w">   </span><span class="c">!&gt; Reader for the specified file type</span>
+<span class="w">   </span><span class="k">procedure</span><span class="p">(</span><span class="n">structure_reader</span><span class="p">),</span><span class="w"> </span><span class="k">pointer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">reader</span><span class="w"></span>
 
-   <span class="c">!&gt; File type to read</span>
-   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ftype</span>
+<span class="w">   </span><span class="c">!&gt; File type to read</span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ftype</span><span class="w"></span>
 
-   <span class="k">nullify</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+<span class="w">   </span><span class="k">nullify</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span><span class="w"></span>
 
-   <span class="k">select case</span><span class="p">(</span><span class="n">ftype</span><span class="p">)</span>
-   <span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">xyz</span><span class="p">)</span>
-      <span class="n">reader</span> <span class="o">=&gt;</span> <span class="n">read_xyz</span>
+<span class="w">   </span><span class="k">select case</span><span class="p">(</span><span class="n">ftype</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">xyz</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">reader</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">read_xyz</span><span class="w"></span>
 
-   <span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">molfile</span><span class="p">)</span>
-      <span class="n">reader</span> <span class="o">=&gt;</span> <span class="n">read_molfile</span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">molfile</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">reader</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">read_molfile</span><span class="w"></span>
 
-   <span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">pdb</span><span class="p">)</span>
-      <span class="n">reader</span> <span class="o">=&gt;</span> <span class="n">read_pdb</span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">pdb</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">reader</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">read_pdb</span><span class="w"></span>
 
-   <span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">gen</span><span class="p">)</span>
-      <span class="n">reader</span> <span class="o">=&gt;</span> <span class="n">read_genformat</span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">gen</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">reader</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">read_genformat</span><span class="w"></span>
 
-   <span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">sdf</span><span class="p">)</span>
-      <span class="n">reader</span> <span class="o">=&gt;</span> <span class="n">read_sdf</span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">sdf</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">reader</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">read_sdf</span><span class="w"></span>
 
-   <span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">vasp</span><span class="p">)</span>
-      <span class="n">reader</span> <span class="o">=&gt;</span> <span class="n">read_vasp</span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">vasp</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">reader</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">read_vasp</span><span class="w"></span>
 
-   <span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">tmol</span><span class="p">)</span>
-      <span class="n">reader</span> <span class="o">=&gt;</span> <span class="n">read_coord</span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">tmol</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">reader</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">read_coord</span><span class="w"></span>
 
-   <span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">gaussian</span><span class="p">)</span>
-      <span class="n">reader</span> <span class="o">=&gt;</span> <span class="n">read_gaussian_external</span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">filetype</span><span class="p">%</span><span class="n">gaussian</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">reader</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">read_gaussian_external</span><span class="w"></span>
 
-   <span class="k">end select</span>
+<span class="w">   </span><span class="k">end select</span>
 
-<span class="k">end subroutine </span><span class="n">get_structure_reader</span>
+<span class="k">end subroutine </span><span class="n">get_structure_reader</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -390,14 +390,14 @@ public subroutine get_structure_reader(reader, ftype)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>MCTC-library was developed by Grimme group, Bonn<br>&copy; 2021 
+        <div class="col-xs-6 col-md-6"><p>MCTC-library was developed by Grimme group, Bonn<br>&copy; 2022 
                                           </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-30 21:37  
+             on 2022-01-05 22:00  
             
           </p>
         </div>

@@ -244,7 +244,7 @@ public subroutine read_genformat(mol, unit, error)
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~5"></span>type(<a href='../type/structure_type.html'>structure_type</a>),</td>
+  <td><span class="anchor" id="variable-mol~7"></span>type(<a href='../type/structure_type.html'>structure_type</a>),</td>
   <td>intent(out)</td>
   <td></td>
   
@@ -259,7 +259,7 @@ public subroutine read_genformat(mol, unit, error)
   
 <tr>
   
-  <td><span class="anchor" id="variable-unit~15"></span>integer,</td>
+  <td><span class="anchor" id="variable-unit~19"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -274,7 +274,7 @@ public subroutine read_genformat(mol, unit, error)
   
 <tr>
   
-  <td><span class="anchor" id="variable-error~7"></span>type(<a href='../type/error_type.html'>error_type</a>),</td>
+  <td><span class="anchor" id="variable-error~10"></span>type(<a href='../type/error_type.html'>error_type</a>),</td>
   <td>intent(out),</td>
   <td></td>
   
@@ -350,129 +350,129 @@ public subroutine read_genformat(mol, unit, error)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">read_genformat</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">read_genformat</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"></span>
 
-   <span class="c">!&gt; Instance of the molecular structure data</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
+<span class="w">   </span><span class="c">!&gt; Instance of the molecular structure data</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mol</span><span class="w"></span>
 
-   <span class="c">!&gt; File handle</span>
-   <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
+<span class="w">   </span><span class="c">!&gt; File handle</span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">unit</span><span class="w"></span>
 
-   <span class="c">!&gt; Error handling</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">error</span>
+<span class="w">   </span><span class="c">!&gt; Error handling</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">error</span><span class="w"></span>
 
-   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">line</span>
-   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">natoms</span><span class="p">,</span> <span class="n">nspecies</span><span class="p">,</span> <span class="n">iatom</span><span class="p">,</span> <span class="n">dummy</span><span class="p">,</span> <span class="n">isp</span><span class="p">,</span> <span class="n">ilat</span><span class="p">,</span> <span class="nb">stat</span><span class="p">,</span> <span class="n">istart</span><span class="p">,</span> <span class="n">iend</span>
-   <span class="kt">logical</span> <span class="kd">::</span> <span class="n">cartesian</span><span class="p">,</span> <span class="n">periodic</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">coord</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">lattice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="kd">::</span> <span class="n">variant</span>
-   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">symbol_length</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">species</span><span class="p">(:),</span> <span class="n">sym</span><span class="p">(:)</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">xyz</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">abc</span><span class="p">(:,</span> <span class="p">:)</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">structure_info</span><span class="p">)</span> <span class="kd">::</span> <span class="n">info</span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">line</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">natoms</span><span class="p">,</span><span class="w"> </span><span class="n">nspecies</span><span class="p">,</span><span class="w"> </span><span class="n">iatom</span><span class="p">,</span><span class="w"> </span><span class="n">dummy</span><span class="p">,</span><span class="w"> </span><span class="n">isp</span><span class="p">,</span><span class="w"> </span><span class="n">ilat</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">istart</span><span class="p">,</span><span class="w"> </span><span class="n">iend</span><span class="w"></span>
+<span class="w">   </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cartesian</span><span class="p">,</span><span class="w"> </span><span class="n">periodic</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">coord</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">lattice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">variant</span><span class="w"></span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">symbol_length</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">species</span><span class="p">(:),</span><span class="w"> </span><span class="n">sym</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">xyz</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="n">abc</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">structure_info</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">info</span><span class="w"></span>
 
-   <span class="k">call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-   <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span> <span class="n">natoms</span><span class="p">,</span> <span class="n">variant</span>
-   <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">natoms</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s1">&#39;could not read number of atoms&#39;</span><span class="p">)</span>
-      <span class="k">return</span>
+<span class="w">   </span><span class="k">call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span><span class="w"> </span><span class="n">natoms</span><span class="p">,</span><span class="w"> </span><span class="n">variant</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">natoms</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;could not read number of atoms&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span>
 <span class="k">   end if</span>
 
-<span class="k">   allocate</span><span class="p">(</span><span class="n">species</span><span class="p">(</span><span class="n">natoms</span><span class="p">))</span>
-   <span class="k">allocate</span><span class="p">(</span><span class="n">sym</span><span class="p">(</span><span class="n">natoms</span><span class="p">))</span>
-   <span class="k">allocate</span><span class="p">(</span><span class="n">xyz</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">natoms</span><span class="p">))</span>
-   <span class="k">allocate</span><span class="p">(</span><span class="n">abc</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">natoms</span><span class="p">))</span>
+<span class="k">   allocate</span><span class="p">(</span><span class="n">species</span><span class="p">(</span><span class="n">natoms</span><span class="p">))</span><span class="w"></span>
+<span class="w">   </span><span class="k">allocate</span><span class="p">(</span><span class="n">sym</span><span class="p">(</span><span class="n">natoms</span><span class="p">))</span><span class="w"></span>
+<span class="w">   </span><span class="k">allocate</span><span class="p">(</span><span class="n">xyz</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">natoms</span><span class="p">))</span><span class="w"></span>
+<span class="w">   </span><span class="k">allocate</span><span class="p">(</span><span class="n">abc</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">natoms</span><span class="p">))</span><span class="w"></span>
 
-   <span class="k">select case</span><span class="p">(</span><span class="n">variant</span><span class="p">)</span>
-   <span class="k">case</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">)</span>
-      <span class="n">cartesian</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-      <span class="n">periodic</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-   <span class="k">case</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">)</span>
-      <span class="n">cartesian</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-      <span class="n">periodic</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-   <span class="k">case</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">)</span>
-      <span class="n">cartesian</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-      <span class="n">periodic</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-   <span class="k">case </span><span class="n">default</span>
-      <span class="k">call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s1">&#39;invalid input version&#39;</span><span class="p">)</span>
-      <span class="k">return</span>
+<span class="w">   </span><span class="k">select case</span><span class="p">(</span><span class="n">variant</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;C&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">cartesian</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="n">periodic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">cartesian</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="n">periodic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;F&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">cartesian</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">      </span><span class="n">periodic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
+<span class="w">   </span><span class="k">case </span><span class="n">default</span><span class="w"></span>
+<span class="w">      </span><span class="k">call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;invalid input version&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span>
 <span class="k">   endselect</span>
 
-<span class="k">   call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-   <span class="n">istart</span> <span class="o">=</span> <span class="mi">1</span>
-   <span class="n">iend</span> <span class="o">=</span> <span class="mi">1</span>
-   <span class="n">isp</span> <span class="o">=</span> <span class="mi">0</span>
-   <span class="k">do while</span><span class="p">(</span><span class="n">iend</span> <span class="o">&lt;</span> <span class="nb">len_trim</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
-      <span class="n">istart</span> <span class="o">=</span> <span class="nb">verify</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">iend</span><span class="p">:),</span> <span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">iend</span>
-      <span class="n">iend</span> <span class="o">=</span> <span class="nb">scan</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span> <span class="s1">&#39; &#39;</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">istart</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">iend</span> <span class="o">&lt;</span> <span class="n">istart</span><span class="p">)</span> <span class="n">iend</span> <span class="o">=</span> <span class="nb">len_trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-      <span class="n">isp</span> <span class="o">=</span> <span class="n">isp</span> <span class="o">+</span> <span class="mi">1</span>
-      <span class="n">species</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:</span><span class="n">iend</span><span class="p">))</span>
-   <span class="k">end do</span>
-<span class="k">   </span><span class="n">nspecies</span> <span class="o">=</span> <span class="n">isp</span>
-   <span class="k">if</span> <span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="n">to_number</span><span class="p">(</span><span class="n">species</span><span class="p">(:</span><span class="n">nspecies</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s1">&#39;unknown atom type present&#39;</span><span class="p">)</span>
-      <span class="k">return</span>
+<span class="k">   call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="n">istart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">   </span><span class="n">iend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">   </span><span class="n">isp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">   </span><span class="k">do while</span><span class="p">(</span><span class="n">iend</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nb">len_trim</span><span class="p">(</span><span class="n">line</span><span class="p">))</span><span class="w"></span>
+<span class="w">      </span><span class="n">istart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">verify</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">iend</span><span class="p">:),</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">iend</span><span class="w"></span>
+<span class="w">      </span><span class="n">iend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">scan</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:),</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">istart</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iend</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">istart</span><span class="p">)</span><span class="w"> </span><span class="n">iend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">len_trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">isp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">      </span><span class="n">species</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">istart</span><span class="p">:</span><span class="n">iend</span><span class="p">))</span><span class="w"></span>
+<span class="w">   </span><span class="k">end do</span>
+<span class="k">   </span><span class="n">nspecies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isp</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="n">to_number</span><span class="p">(</span><span class="n">species</span><span class="p">(:</span><span class="n">nspecies</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;unknown atom type present&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span>
 <span class="k">   end if</span>
 
-<span class="k">   do </span><span class="n">iatom</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">natoms</span>
-      <span class="k">call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-      <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span> <span class="n">dummy</span><span class="p">,</span> <span class="n">isp</span><span class="p">,</span> <span class="n">coord</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">         call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s1">&#39;could not read coordinates from file&#39;</span><span class="p">)</span>
-         <span class="k">return</span>
+<span class="k">   do </span><span class="n">iatom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">natoms</span><span class="w"></span>
+<span class="w">      </span><span class="k">call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span><span class="w"> </span><span class="n">dummy</span><span class="p">,</span><span class="w"> </span><span class="n">isp</span><span class="p">,</span><span class="w"> </span><span class="n">coord</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;could not read coordinates from file&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">return</span>
 <span class="k">      end if</span>
-<span class="k">      </span><span class="n">sym</span><span class="p">(</span><span class="n">iatom</span><span class="p">)</span> <span class="o">=</span> <span class="n">species</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">cartesian</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">         </span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">iatom</span><span class="p">)</span> <span class="o">=</span> <span class="n">coord</span> <span class="o">*</span> <span class="n">aatoau</span>
-      <span class="k">else</span>
-<span class="k">         </span><span class="n">abc</span><span class="p">(:,</span> <span class="n">iatom</span><span class="p">)</span> <span class="o">=</span> <span class="n">coord</span>
-      <span class="k">end if</span>
+<span class="k">      </span><span class="n">sym</span><span class="p">(</span><span class="n">iatom</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">species</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cartesian</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         </span><span class="n">xyz</span><span class="p">(:,</span><span class="w"> </span><span class="n">iatom</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coord</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">aatoau</span><span class="w"></span>
+<span class="w">      </span><span class="k">else</span>
+<span class="k">         </span><span class="n">abc</span><span class="p">(:,</span><span class="w"> </span><span class="n">iatom</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coord</span><span class="w"></span>
+<span class="w">      </span><span class="k">end if</span>
 <span class="k">   end do</span>
 
-<span class="k">   if</span> <span class="p">(</span><span class="n">periodic</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">         call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s1">&#39;missing lattice information&#39;</span><span class="p">)</span>
-         <span class="k">return</span>
+<span class="k">   if</span><span class="w"> </span><span class="p">(</span><span class="n">periodic</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;missing lattice information&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">return</span>
 <span class="k">      end if</span>
-<span class="k">      do </span><span class="n">ilat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
-         <span class="k">call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-         <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span> <span class="n">coord</span>
-         <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s1">&#39;could not read lattice from file&#39;</span><span class="p">)</span>
-            <span class="k">return</span>
+<span class="k">      do </span><span class="n">ilat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w">         </span><span class="k">call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span><span class="w"> </span><span class="n">coord</span><span class="w"></span>
+<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;could not read lattice from file&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span>
 <span class="k">         end if</span>
-<span class="k">         </span><span class="n">lattice</span><span class="p">(:,</span> <span class="n">ilat</span><span class="p">)</span> <span class="o">=</span> <span class="n">coord</span> <span class="o">*</span> <span class="n">aatoau</span>
-      <span class="k">end do</span>
-<span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">cartesian</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">         </span><span class="n">xyz</span> <span class="o">=</span> <span class="nb">matmul</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span> <span class="n">abc</span><span class="p">)</span>
-      <span class="k">end if</span>
-<span class="k">      </span><span class="n">info</span> <span class="o">=</span> <span class="n">structure_info</span><span class="p">(</span><span class="n">cartesian</span><span class="o">=</span><span class="n">cartesian</span><span class="p">)</span>
-      <span class="k">call </span><span class="n">new</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">sym</span><span class="p">,</span> <span class="n">xyz</span><span class="p">,</span> <span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="n">info</span><span class="p">)</span>
-   <span class="k">else</span>
-<span class="k">      call </span><span class="n">new</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">sym</span><span class="p">,</span> <span class="n">xyz</span><span class="p">)</span>
-   <span class="k">end if</span>
+<span class="k">         </span><span class="n">lattice</span><span class="p">(:,</span><span class="w"> </span><span class="n">ilat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coord</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">aatoau</span><span class="w"></span>
+<span class="w">      </span><span class="k">end do</span>
+<span class="k">      if</span><span class="w"> </span><span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">cartesian</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         </span><span class="n">xyz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="w"> </span><span class="n">abc</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">end if</span>
+<span class="k">      </span><span class="n">info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">structure_info</span><span class="p">(</span><span class="n">cartesian</span><span class="o">=</span><span class="n">cartesian</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">call </span><span class="n">new</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">sym</span><span class="p">,</span><span class="w"> </span><span class="n">xyz</span><span class="p">,</span><span class="w"> </span><span class="n">lattice</span><span class="o">=</span><span class="n">lattice</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="o">=</span><span class="n">info</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">else</span>
+<span class="k">      call </span><span class="n">new</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">sym</span><span class="p">,</span><span class="w"> </span><span class="n">xyz</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">end if</span>
 
 
 <span class="k">contains</span>
 
-<span class="k">subroutine </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-   <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
-   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">line</span>
-   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="nb">stat</span>
-<span class="nb">   </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">ihash</span>
+<span class="k">subroutine </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">unit</span><span class="w"></span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">line</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span>
+<span class="nb">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ihash</span><span class="w"></span>
 
-   <span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
-   <span class="k">do while</span><span class="p">(</span><span class="nb">stat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-      <span class="n">ihash</span> <span class="o">=</span> <span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">)</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">ihash</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">(:</span><span class="n">ihash</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">exit</span>
+<span class="w">   </span><span class="nb">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">   </span><span class="k">do while</span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">ihash</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ihash</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">line</span><span class="p">(:</span><span class="n">ihash</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">exit</span>
 <span class="k">   end do</span>
-<span class="k">   </span><span class="n">line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
-<span class="k">end subroutine </span><span class="n">next_line</span>
+<span class="k">   </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">line</span><span class="p">))</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">next_line</span><span class="w"></span>
 
-<span class="k">end subroutine </span><span class="n">read_genformat</span>
+<span class="k">end subroutine </span><span class="n">read_genformat</span><span class="w"></span>
 </pre></div>
 
     </section>
@@ -488,14 +488,14 @@ public subroutine read_genformat(mol, unit, error)
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-6"><p>MCTC-library was developed by Grimme group, Bonn<br>&copy; 2021 
+        <div class="col-xs-6 col-md-6"><p>MCTC-library was developed by Grimme group, Bonn<br>&copy; 2022 
                                           </p>
         </div>
         <div class="col-xs-6 col-md-6">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-30 21:37  
+             on 2022-01-05 22:00  
             
           </p>
         </div>
