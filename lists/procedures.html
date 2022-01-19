@@ -142,6 +142,8 @@ All Procedures &ndash; MCTC-library
 			 
 			   <tr><td><a href='../proc/fatal_error.html'>fatal_error</a></td><td><a href='../module/mctc_env_error.html'>mctc_env_error</a></td><td>Subroutine</td><td><p>A fatal error is encountered</p></td></tr>
 			 
+			   <tr><td><a href='../proc/filename.html'>filename</a></td><td><a href='../module/mctc_io_utils.html'>mctc_io_utils</a></td><td>Function</td><td></td></tr>
+			 
 			   <tr><td><a href='../proc/get_argument.html'>get_argument</a></td><td><a href='../module/mctc_env_system.html'>mctc_env_system</a></td><td>Subroutine</td><td><p>Obtain the command line argument at a given index</p></td></tr>
 			 
 			   <tr><td><a href='../proc/get_arguments.html'>get_arguments</a></td><td><a href='../program/main.html'>main</a></td><td>Subroutine</td><td></td></tr>
@@ -162,6 +164,8 @@ All Procedures &ndash; MCTC-library
 			 
 			   <tr><td><a href='../proc/help.html'>help</a></td><td><a href='../program/main.html'>main</a></td><td>Subroutine</td><td></td></tr>
 			 
+			   <tr><td><a href='../proc/io_error.html'>io_error</a></td><td><a href='../module/mctc_io_utils.html'>mctc_io_utils</a></td><td>Subroutine</td><td><p>Create new IO error</p></td></tr>
+			 
 			   <tr><td><a href='../proc/is_unix.html'>is_unix</a></td><td><a href='../module/mctc_env_system.html'>mctc_env_system</a></td><td>Function</td><td><p>Try to determine if we run on Unix and probably can rely on POSIX compliance</p></td></tr>
 			 
 			   <tr><td><a href='../proc/is_windows.html'>is_windows</a></td><td><a href='../module/mctc_env_system.html'>mctc_env_system</a></td><td>Function</td><td><p>Try to determine if we run on Windows and don&rsquo;t have POSIX compliance around</p></td></tr>
@@ -178,9 +182,15 @@ All Procedures &ndash; MCTC-library
 			 
 			   <tr><td><a href='../proc/new_unittest.html'>new_unittest</a></td><td><a href='../module/mctc_env_testing.html'>mctc_env_testing</a></td><td>Function</td><td><p>Register a new unit test</p></td></tr>
 			 
+			   <tr><td><a href='../proc/next_line.html'>next_line</a></td><td><a href='../module/mctc_io_utils.html'>mctc_io_utils</a></td><td>Subroutine</td><td><p>Convenience function to read a line and update associated descriptors</p></td></tr>
+			 
+			   <tr><td><a href='../proc/next_token.html'>next_token</a></td><td><a href='../module/mctc_io_utils.html'>mctc_io_utils</a></td><td>Subroutine</td><td><p>Advance pointer to next text token</p></td></tr>
+			 
 			   <tr><td><a href='../proc/number_to_lcsymbol.html'>number_to_lcsymbol</a></td><td><a href='../module/mctc_io_symbols.html'>mctc_io_symbols</a></td><td>Subroutine</td><td><p>Convert atomic number to element symbol</p></td></tr>
 			 
 			   <tr><td><a href='../proc/number_to_symbol.html'>number_to_symbol</a></td><td><a href='../module/mctc_io_symbols.html'>mctc_io_symbols</a></td><td>Subroutine</td><td><p>Convert atomic number to element symbol</p></td></tr>
+			 
+			   <tr><td><a href='../proc/read_aims.html'>read_aims</a></td><td><a href='../module/mctc_io_read_aims.html'>mctc_io_read_aims</a></td><td>Subroutine</td><td></td></tr>
 			 
 			   <tr><td><a href='../proc/read_coord.html'>read_coord</a></td><td><a href='../module/mctc_io_read_turbomole.html'>mctc_io_read_turbomole</a></td><td>Subroutine</td><td></td></tr>
 			 
@@ -197,6 +207,8 @@ All Procedures &ndash; MCTC-library
 			   <tr><td><a href='../proc/read_sdf.html'>read_sdf</a></td><td><a href='../module/mctc_io_read_ctfile.html'>mctc_io_read_ctfile</a></td><td>Subroutine</td><td></td></tr>
 			 
 			   <tr><td><a href='../interface/read_structure.html'>read_structure</a></td><td><a href='../module/mctc_io_read.html'>mctc_io_read</a></td><td>Interface</td><td></td></tr>
+			 
+			   <tr><td><a href='../interface/read_token.html'>read_token</a></td><td><a href='../module/mctc_io_utils.html'>mctc_io_utils</a></td><td>Interface</td><td></td></tr>
 			 
 			   <tr><td><a href='../proc/read_vasp.html'>read_vasp</a></td><td><a href='../module/mctc_io_read_vasp.html'>mctc_io_read_vasp</a></td><td>Subroutine</td><td></td></tr>
 			 
@@ -222,9 +234,13 @@ All Procedures &ndash; MCTC-library
 			 
 			   <tr><td><a href='../proc/to_number.html'>to_number</a></td><td><a href='../module/mctc_io_symbols.html'>mctc_io_symbols</a></td><td>Function</td><td><p>Convert element symbol to atomic number</p></td></tr>
 			 
+			   <tr><td><a href='../proc/to_string.html'>to_string</a></td><td><a href='../module/mctc_io_utils.html'>mctc_io_utils</a></td><td>Function</td><td><p>Represent an integer as character sequence.</p></td></tr>
+			 
 			   <tr><td><a href='../proc/to_symbol.html'>to_symbol</a></td><td><a href='../module/mctc_io_symbols.html'>mctc_io_symbols</a></td><td>Function</td><td><p>Convert atomic number to element symbol</p></td></tr>
 			 
 			   <tr><td><a href='../proc/version.html'>version</a></td><td><a href='../program/main.html'>main</a></td><td>Subroutine</td><td></td></tr>
+			 
+			   <tr><td><a href='../proc/write_aims.html'>write_aims</a></td><td><a href='../module/mctc_io_write_aims.html'>mctc_io_write_aims</a></td><td>Subroutine</td><td></td></tr>
 			 
 			   <tr><td><a href='../proc/write_coord.html'>write_coord</a></td><td><a href='../module/mctc_io_write_turbomole.html'>mctc_io_write_turbomole</a></td><td>Subroutine</td><td></td></tr>
 			 
@@ -263,7 +279,7 @@ All Procedures &ndash; MCTC-library
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2022-01-16 12:27  
+             on 2022-01-19 23:14  
             
           </p>
         </div>
