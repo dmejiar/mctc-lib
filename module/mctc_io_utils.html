@@ -142,7 +142,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 6.2% of total for modules and submodules.">208 statements</a>
+    title=" 7.3% of total for modules and submodules.">268 statements</a>
      </li> 
      
      
@@ -192,6 +192,8 @@
   <div id="inters-0" class="panel-collapse collapse">
     <div class="list-group">
       
+      <a class="list-group-item" href="../module/mctc_io_utils.html#interface-read_next_token">read_next_token</a>
+      
       <a class="list-group-item" href="../module/mctc_io_utils.html#interface-read_token">read_token</a>
       
     </div>
@@ -236,6 +238,8 @@
       
       <a class="list-group-item" href="../module/mctc_io_utils.html#proc-getline">getline</a>
       
+      <a class="list-group-item" href="../module/mctc_io_utils.html#proc-io2_error">io2_error</a>
+      
       <a class="list-group-item" href="../module/mctc_io_utils.html#proc-io_error">io_error</a>
       
       <a class="list-group-item" href="../module/mctc_io_utils.html#proc-next_line">next_line</a>
@@ -273,9 +277,9 @@
       <li class="list-group-item">
   <ul class="list-inline">
     
-    <li><a href='../module/mctc_env_error.html'>mctc_env_error</a></li>
-    
     <li><a href='../module/mctc_env_accuracy.html'>mctc_env_accuracy</a></li>
+    
+    <li><a href='../module/mctc_env_error.html'>mctc_env_error</a></li>
     
   </ul>
       </li>
@@ -309,6 +313,8 @@
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-1">Interfaces</a></h3></div>
   <div id="inters-1" class="panel-collapse collapse">
     <div class="list-group">
+      
+      <a class="list-group-item" href="../module/mctc_io_utils.html#interface-read_next_token">read_next_token</a>
       
       <a class="list-group-item" href="../module/mctc_io_utils.html#interface-read_token">read_token</a>
       
@@ -354,6 +360,8 @@
       
       <a class="list-group-item" href="../module/mctc_io_utils.html#proc-getline">getline</a>
       
+      <a class="list-group-item" href="../module/mctc_io_utils.html#proc-io2_error">io2_error</a>
+      
       <a class="list-group-item" href="../module/mctc_io_utils.html#proc-io_error">io_error</a>
       
       <a class="list-group-item" href="../module/mctc_io_utils.html#proc-next_line">next_line</a>
@@ -388,7 +396,7 @@
    
      
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="interface-read_token"></span><h3>public interface <a href='../interface/read_token.html'>read_token</a>
+  <div class="panel-heading codesum"><span class="anchor" id="interface-read_next_token"></span><h3>public interface <a href='../interface/read_next_token.html'>read_next_token</a>
     
   </h3></div>
   
@@ -400,7 +408,7 @@
     
     
     <h3>
-private subroutine read_token_int(line, pos, token, val, iostat, iomsg)
+private subroutine read_next_token_int(line, pos, token, val, iostat, iomsg)
     
     
    
@@ -523,7 +531,7 @@ private subroutine read_token_int(line, pos, token, val, iostat, iomsg)
     
     
     <h3>
-private subroutine read_token_real(line, pos, token, val, iostat, iomsg)
+private subroutine read_next_token_real(line, pos, token, val, iostat, iomsg)
     
     
    
@@ -581,6 +589,237 @@ private subroutine read_token_real(line, pos, token, val, iostat, iomsg)
   
   <td><span class="anchor" ></span>type(<a href='../type/token_type.html'>token_type</a>),</td>
   <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>token</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iostat</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=:),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>iomsg</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-read_token"></span><h3>public interface <a href='../interface/read_token.html'>read_token</a>
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine read_token_int(line, token, val, iostat, iomsg)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>line</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/token_type.html'>token_type</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>token</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iostat</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=:),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>iomsg</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private subroutine read_token_real(line, token, val, iostat, iomsg)
+    
+    
+   
+</h3>
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>line</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/token_type.html'>token_type</a>),</td>
+  <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
@@ -916,6 +1155,215 @@ public subroutine <a href='../proc/getline.html'>getline</a>(unit, line, iostat,
   
   <td>allocatable</td><td>::</td>
   <td><strong>iomsg</strong></td><td><p>Error message</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-io2_error"></span><h3>
+public subroutine <a href='../proc/io2_error.html'>io2_error</a>(error, message, source1, source2, token1, token2, filename, line1, line2, label1, label2)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Create new IO error</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/error_type.html'>error_type</a>),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>error</strong></td><td><p>Error handler</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>message</strong></td><td><p>Main error message</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>source1</strong></td><td><p>String representing the offending input</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>source2</strong></td><td><p>String representing the offending input</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/token_type.html'>token_type</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>token1</strong></td><td><p>Last processed token</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/token_type.html'>token_type</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>token2</strong></td><td><p>Last processed token</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>filename</strong></td><td><p>Name of the input file</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>line1</strong></td><td><p>Line number</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>line2</strong></td><td><p>Line number</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>label1</strong></td><td><p>Label of the offending statement</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>label2</strong></td><td><p>Label of the offending statement</p></td>
   
 </tr>
 
@@ -1323,7 +1771,7 @@ public subroutine <a href='../proc/next_token.html'>next_token</a>(string, pos, 
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2022-01-19 23:14  
+             on 2022-01-21 18:55  
             
           </p>
         </div>

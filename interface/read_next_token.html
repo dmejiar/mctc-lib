@@ -10,7 +10,7 @@
     <meta name="author" content="Grimme group, Bonn" >
     <link rel="icon" href="../favicon.png">
 
-    <title>mctc_io_constants &ndash; MCTC-library</title>
+    <title>read_next_token &ndash; MCTC-library</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -123,8 +123,8 @@
     
   
   <div class="row">
-    <h1>mctc_io_constants 
-    <small>Module</small>
+    <h1>read_next_token
+   <small>Interface</small>
     
     </h1>
     
@@ -142,22 +142,24 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.5% of total for modules and submodules.">17 statements</a>
+    title="<p> 0.2% of total for procedures.</p>Including implementation: 25 statements,  1.1% of total for procedures.">4 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/constants.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/utils.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/constants.f90.html'>constants.f90</a></li>
+     <li><a href='../sourcefile/utils.f90.html'>utils.f90</a></li>
+    
+     <li><a href='../module/mctc_io_utils.html'>mctc_io_utils</a></li>
     
   
-     <li class="active">mctc_io_constants</li>
+     <li class="active">read_next_token</li>
   </ol>
 </div>
 </div>
@@ -172,7 +174,7 @@
   
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
-    
+      
 <div id="sidebar">
   
 <h3>Contents</h3>
@@ -180,35 +182,35 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
-  <div id="vars-0" class="panel-collapse collapse">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#modprocs-0">Module Procedures</a></h3></div>
+  <div id="modprocs-0" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../module/mctc_io_constants.html#variable-codata">codata</a>
+      <a class="list-group-item" href="../interface/read_next_token.html#moduleprocedure-read_next_token_int">read_next_token_int</a>
       
-      <a class="list-group-item" href="../module/mctc_io_constants.html#variable-pi">pi</a>
+      <a class="list-group-item" href="../interface/read_next_token.html#moduleprocedure-read_next_token_real">read_next_token_real</a>
       
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -218,50 +220,44 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <p>Numerical constants</p>
-      <br>
-    
-  
-    <div class="panel panel-default">
-      <div class="panel-heading">
-  <h3 class="panel-title">Uses</h3>
-      </div>
-      <ul class="list-group">
-      
-      <li class="list-group-item">
-  <ul class="list-inline">
-    
-    <li><a href='../module/mctc_env_accuracy.html'>mctc_env_accuracy</a></li>
-    
-  </ul>
-      </li>
-      
-      
-      
-      </ul>
-    </div>
+      <h2>public interface read_next_token</h2>
+   
+     
+     
     
 
-    
-    
-
-    <br>
-
-    <section class="visible-xs visible-sm hidden-md">
-      
+     <section class="visible-xs visible-sm hidden-md">
+       
 <h3>Contents</h3>
  
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
-  <div id="vars-1" class="panel-collapse collapse">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#modprocs-1">Module Procedures</a></h3></div>
+  <div id="modprocs-1" class="panel-collapse collapse">
     <div class="list-group">
       
-      <a class="list-group-item" href="../module/mctc_io_constants.html#variable-codata">codata</a>
+      <a class="list-group-item" href="../interface/read_next_token.html#moduleprocedure-read_next_token_int">read_next_token_int</a>
       
-      <a class="list-group-item" href="../module/mctc_io_constants.html#variable-pi">pi</a>
+      <a class="list-group-item" href="../interface/read_next_token.html#moduleprocedure-read_next_token_real">read_next_token_real</a>
       
     </div>
   </div>
@@ -270,36 +266,36 @@
 
 
 
+     </section>
+     <br class="visible-xs visible-sm hidden-md">
+     
+  
 
+  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </section>
-    <br class="visible-xs visible-sm hidden-md">
-
+  
+   <h2>Module Procedures</h2>
+   
     
-
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-read_next_token_int"></span><h3>
+private subroutine read_next_token_int(line, pos, token, val, iostat, iomsg)
     
-    <section>
-    <h2>Variables</h2>
     
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
 <table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
 
 
 
@@ -311,11 +307,12 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-codata"></span>type(enum_codata),</td>
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
   
-  <td>public,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>codata</strong></td><td> =</td><td>enum_codata()</td><td><p>Actual collection of natural constants</p></td>
+  <td></td><td>::</td>
+  <td><strong>line</strong></td><td></td>
   
 </tr>
 
@@ -325,38 +322,218 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-pi"></span>real(kind=wp),</td>
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
   
-  <td>public,</td>
-  <td>parameter</td><td>::</td>
-  <td><strong>pi</strong></td><td> =</td><td>3.1415926535897932384626433832795029_wp</td><td><p>Ratio between a circles diameter and its circumfence</p></td>
+  <td></td><td>::</td>
+  <td><strong>pos</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/token_type.html'>token_type</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>token</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iostat</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=:),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>iomsg</strong></td><td></td>
   
 </tr>
 
 </tbody>
 </table>
 
-    </section>
-    <br>
-    
-    
-    
+      
     
     
 
-    
-    
-    
-    
-    
-
-    
-    
-    
-    </div>
+  </div>
   </div>
 
+   
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-read_next_token_real"></span><h3>
+private subroutine read_next_token_real(line, pos, token, val, iostat, iomsg)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
   
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>line</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>pos</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/token_type.html'>token_type</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>token</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>val</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iostat</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(len=:),</td>
+  <td>intent(out),</td>
+  <td>optional</td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>iomsg</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+   
+     
+
+ </div>
+</div>
+
+
     <hr>    
     </div> <!-- /container -->
     <footer>
