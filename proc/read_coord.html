@@ -142,7 +142,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="11.0% of total for procedures.">261 statements</a>
+    title="10.8% of total for procedures.">263 statements</a>
      </li> 
      
      
@@ -393,19 +393,20 @@ public subroutine read_coord(mol, unit, error)
 <span class="w">   </span><span class="n">cartesian</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
 <span class="w">   </span><span class="n">coord_in_bohr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
 <span class="w">   </span><span class="n">lattice_in_bohr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"></span>
-<span class="w">   </span><span class="n">lattice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="w"></span>
-<span class="w">   </span><span class="n">pbc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
+<span class="w">   </span><span class="n">lattice</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="w"></span>
+<span class="w">   </span><span class="n">pbc</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 
 <span class="w">   </span><span class="nb">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 <span class="w">   </span><span class="k">call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">lnum</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
 <span class="w">   </span><span class="k">do while</span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
 <span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">flag</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">         call </span><span class="n">next_token</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="p">)</span><span class="w"></span>
-<span class="w">         </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;end&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            exit</span>
+<span class="w">         </span><span class="k">select case</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="n">token</span><span class="p">%</span><span class="n">first</span><span class="p">:</span><span class="n">token</span><span class="p">%</span><span class="n">last</span><span class="p">))</span><span class="w"></span>
+<span class="w">         </span><span class="k">case</span><span class="p">(</span><span class="s1">&#39;$end&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">exit</span>
 
-<span class="k">         else if</span><span class="w"> </span><span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;eht&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="n">has_eht</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         case</span><span class="p">(</span><span class="s1">&#39;$eht&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">has_eht</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">               </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 <span class="w">               </span><span class="k">call </span><span class="n">next_token</span><span class="p">(</span><span class="n">line_eht</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">token2</span><span class="p">)</span><span class="w"></span>
 <span class="w">               </span><span class="k">call </span><span class="n">io2_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Duplicated eht data group&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
@@ -435,8 +436,8 @@ public subroutine read_coord(mol, unit, error)
 <span class="w">               </span><span class="k">return</span>
 <span class="k">            end if</span>
 
-<span class="k">         else if</span><span class="w"> </span><span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;coord&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="n">has_coord</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         case</span><span class="p">(</span><span class="s1">&#39;$coord&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">has_coord</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">               </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 <span class="w">               </span><span class="k">call </span><span class="n">next_token</span><span class="p">(</span><span class="n">line_coord</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">token2</span><span class="p">)</span><span class="w"></span>
 <span class="w">               </span><span class="k">call </span><span class="n">io2_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Duplicated coord data group&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
@@ -479,8 +480,8 @@ public subroutine read_coord(mol, unit, error)
 <span class="k">            end do </span><span class="n">coord_group</span><span class="w"></span>
 <span class="w">            </span><span class="k">cycle</span>
 
-<span class="k">         else if</span><span class="w"> </span><span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;periodic&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="n">has_periodic</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         case</span><span class="p">(</span><span class="s1">&#39;$periodic&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">has_periodic</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">               </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 <span class="w">               </span><span class="k">call </span><span class="n">next_token</span><span class="p">(</span><span class="n">line_periodic</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">token2</span><span class="p">)</span><span class="w"></span>
 <span class="w">               </span><span class="k">call </span><span class="n">io2_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Duplicated periodic data group&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
@@ -500,8 +501,8 @@ public subroutine read_coord(mol, unit, error)
 <span class="w">               </span><span class="k">return</span>
 <span class="k">            end if</span>
 
-<span class="k">         else if</span><span class="w"> </span><span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;lattice&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="n">has_lattice</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         case</span><span class="p">(</span><span class="s1">&#39;$lattice&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">has_lattice</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">               </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 <span class="w">               </span><span class="k">call </span><span class="n">next_token</span><span class="p">(</span><span class="n">line_lattice</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">token2</span><span class="p">)</span><span class="w"></span>
 <span class="w">               </span><span class="k">call </span><span class="n">io2_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Duplicated lattice data group&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
@@ -525,8 +526,8 @@ public subroutine read_coord(mol, unit, error)
 <span class="w">            </span><span class="k">end do </span><span class="n">lattice_group</span><span class="w"></span>
 <span class="w">            </span><span class="k">cycle</span>
 
-<span class="k">         else if</span><span class="w"> </span><span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;cell&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">            if</span><span class="w"> </span><span class="p">(</span><span class="n">has_cell</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         case</span><span class="p">(</span><span class="s1">&#39;$cell&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">has_cell</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">               </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
 <span class="w">               </span><span class="k">call </span><span class="n">next_token</span><span class="p">(</span><span class="n">line_cell</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">token2</span><span class="p">)</span><span class="w"></span>
 <span class="w">               </span><span class="k">call </span><span class="n">io2_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Duplicated cell data group&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
@@ -543,7 +544,7 @@ public subroutine read_coord(mol, unit, error)
 <span class="w">            </span><span class="k">call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">cell_string</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">lnum</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">debug</span><span class="p">)</span><span class="w"> </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">cell_string</span><span class="w"></span>
 
-<span class="w">         </span><span class="k">end if</span>
+<span class="w">         </span><span class="k">end select</span>
 <span class="k">      end if</span>
 <span class="k">      </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">token_type</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
 <span class="w">      </span><span class="k">call </span><span class="n">next_line</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">lnum</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
@@ -672,8 +673,11 @@ public subroutine read_coord(mol, unit, error)
 <span class="k">         </span><span class="n">conv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aatoau</span><span class="w"></span>
 <span class="w">      </span><span class="k">end if</span>
 <span class="k">      </span><span class="n">xyz</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coord</span><span class="p">(:,</span><span class="w"> </span><span class="p">:</span><span class="n">natoms</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">conv</span><span class="w"></span>
-<span class="w">   </span><span class="k">else</span>
-<span class="k">      </span><span class="n">xyz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="n">lattice</span><span class="p">,</span><span class="w"> </span><span class="n">coord</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">else</span><span class="w"></span>
+<span class="w">      </span><span class="c">! Non-periodic coordinates are in Bohr</span>
+<span class="w">      </span><span class="n">xyz</span><span class="p">(</span><span class="n">periodic</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coord</span><span class="p">(</span><span class="n">periodic</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">natoms</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="c">! Periodic coordinates must still be transformed with lattice</span>
+<span class="w">      </span><span class="n">xyz</span><span class="p">(:</span><span class="n">periodic</span><span class="p">,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="n">lattice</span><span class="p">(:</span><span class="n">periodic</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">periodic</span><span class="p">),</span><span class="w"> </span><span class="n">coord</span><span class="p">(:</span><span class="n">periodic</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="n">natoms</span><span class="p">))</span><span class="w"></span>
 <span class="w">   </span><span class="k">end if</span><span class="w"></span>
 
 <span class="w">   </span><span class="c">! save data on input format</span>
@@ -715,7 +719,7 @@ public subroutine read_coord(mol, unit, error)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2022-02-01 08:54  
+             on 2022-02-02 23:28  
             
           </p>
         </div>
