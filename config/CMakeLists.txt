@@ -16,6 +16,8 @@ option(BUILD_SHARED_LIBS "Whether the libraries built should be shared" FALSE)
 
 option(WITH_OpenMP "Enable support for shared memory parallelisation with OpenMP" TRUE)
 option(WITH_JSON "Enable support for JSON parsing via json-fortran" FALSE)
+option(WITH_TESTS "Enabling testing" TRUE)
+option(WITH_APP "Enable compilation of example application" TRUE)
 
 set(
   module-dir

@@ -69,7 +69,8 @@ subroutine read_vasp(self, unit, error)
    end if
 
    call parse_line(line, args, ntype)
-   call move_alloc(line, comment)
+   if(allocated(line)) comment = line
+   deallocate(line)
 
    ! this line contains the global scaling factor,
    call next_line(unit, line, pos, lnum, stat)

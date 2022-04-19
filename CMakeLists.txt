@@ -75,7 +75,9 @@ if(NOT EXISTS "${PROJECT_BINARY_DIR}/include")
 endif()
 
 # Add example application
-add_subdirectory("app")
+if(WITH_APP)
+  add_subdirectory("app")
+endif()
 
 # Export targets for other projects
 add_library("${PROJECT_NAME}" INTERFACE)
@@ -113,5 +115,7 @@ install(
 )
 
 # add the testsuite
-enable_testing()
-add_subdirectory("test")
+if(WITH_TESTS)
+  enable_testing()
+  add_subdirectory("test")
+endif()
