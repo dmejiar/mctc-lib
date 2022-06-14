@@ -20,8 +20,14 @@ option(WITH_TESTS "Enabling testing" TRUE)
 option(WITH_APP "Enable compilation of example application" TRUE)
 
 set(
-  module-dir
+  "${PROJECT_NAME}-module-dir"
   "${PROJECT_NAME}/${CMAKE_Fortran_COMPILER_ID}-${CMAKE_Fortran_COMPILER_VERSION}"
+  CACHE STRING
+  "Subdirectory to install generated module files to"
+)
+set(
+  module-dir
+  "${${PROJECT_NAME}-module-dir}"
 )
 set(module-dir "${module-dir}" PARENT_SCOPE)
 

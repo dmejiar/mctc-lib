@@ -71,7 +71,7 @@ target_include_directories(
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/${module-dir}>
 )
 if(NOT EXISTS "${PROJECT_BINARY_DIR}/include")
-  make_directory("${PROJECT_BINARY_DIR}/include")
+  file(MAKE_DIRECTORY "${PROJECT_BINARY_DIR}/include")
 endif()
 
 # Add example application
@@ -98,14 +98,10 @@ install(
   "${PROJECT_NAME}::"
   DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}"
 )
-set(
-  module-id
-  "${CMAKE_Fortran_COMPILER_ID}-${CMAKE_Fortran_COMPILER_VERSION}"
-)
 install(
   DIRECTORY
   "${PROJECT_BINARY_DIR}/include/"
-  DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}/${module-id}"
+  DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${module-dir}"
 )
 # Package license files
 install(
